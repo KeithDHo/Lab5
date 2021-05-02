@@ -48,7 +48,7 @@ form.addEventListener('submit', (event) => {
  
  context.font = "bold 30px Arial";
  context.textAlign = "center";
- context.strokeStyle = 'thick black';
+ context.strokeStyle = 'black';
  context.fillStyle = 'white';
 
  context.strokeText(top_text, canvas.width/2, 25);
