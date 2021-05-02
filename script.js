@@ -30,6 +30,7 @@ imageInput.onchange = function(event) {
   reader.readAsDataURL(this.files[0]);
   img.alt = this.files[0]['name'];
  };
+
  var form = document.getElementById('generate-meme');
 var submit = form.querySelectorAll('button')[0];
 var buttons = document.getElementById('button-group').querySelectorAll('button');
@@ -88,8 +89,56 @@ clear.addEventListener('click', () => {
  clear.disabled = true;
  read_text.disabled = true;
 });
- 
+
+let vol = 1;
+
 // Event for Read Text
+read_text.addEventListener('click', () => {
+  var top_text = document.getElementById('text-top').value;
+  var bot_text = document.getElementById('text-bottom').value;
+
+  let utterance_top = new SpeechSynthesisUtterance(top_text);
+  let utterance_bot = new SpeechSynthesisUtterance(bot_text);
+
+  var selectedOption = voiceOptions.selectedOptions[0].getAttribute('data-name');
+  for(var i = 0; i < voices.length ; i++) {
+    if(voices[i].name === selectedOption) {
+      utterance_top.voice = voices[i];
+      utterance_bot.voice = voices[i];
+    }
+  }
+
+  utterance_top.volume = vol;
+  utterance_bot.volume = vol;
+  console.log("Hello");
+
+  synth.speak(utterance_top);
+  synth.speak(utterance_bot);
+});
+
+// Updating Volume Group
+var volumeGroup = document.getElementById('volume-group');
+volumeGroup.addEventListener('input', () => {
+
+  var volumeSlider = document.querySelector('[type=range]').value;
+  var volumeIcon = document.querySelector('[alt="Volume Level 3"]');
+
+  vol = volumeSlider/(100.0);
+
+  if (volumeSlider >= 67 && volumeSlider <= 100) {
+    volumeIcon.src = "icons/volume-level-3.svg";
+  }
+  else if (volumeSlider >= 34 && volumeSlider <= 66) {
+    volumeIcon.src = "icons/volume-level-2.svg";
+  }
+  else if (volumeSlider >= 1 && volumeSlider <= 33) {
+    volumeIcon.src = "icons/volume-level-1.svg";
+  }
+  else if (volumeSlider == 0) {
+    volumeIcon.src = "icons/volume-level-0.svg";
+  }
+
+});
  
 /**
 * Takes in the dimensions of the canvas and the new image, then calculates the new
