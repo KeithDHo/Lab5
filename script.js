@@ -46,12 +46,15 @@ form.addEventListener('submit', (event) => {
  var canvas = document.getElementById('user-image');
  var context = canvas.getContext('2d');
  
- context.font = "30px Arial";
+ context.font = "bold 30px Arial";
  context.textAlign = "center";
+ context.strokeStyle = 'thick black';
  context.fillStyle = 'white';
- context.strokeStyle = 'black';
- context.fillText(top_text, canvas.width/2, 20);
- context.fillText(bot_text, canvas.width/2, canvas.height-20);
+
+ context.strokeText(top_text, canvas.width/2, 25);
+ context.strokeText(bot_text, canvas.width/2, canvas.height-25);
+ context.fillText(top_text, canvas.width/2, 25);
+ context.fillText(bot_text, canvas.width/2, canvas.height-25);
  
  submit.disabled = true;
  clear.disabled = false;
@@ -63,18 +66,18 @@ form.addEventListener('submit', (event) => {
  
 var voices = [];
 var synth = window.speechSynthesis;
- function addVoices() {
+function addVoices() {
  voices = synth.getVoices();
   for(var i = 0; i < voices.length ; i++) {
    var option = document.createElement('option');
    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
-    if(voices[i].default) {
+   if(voices[i].default) {
      option.textContent += ' -- DEFAULT';
    }
-    option.setAttribute('data-lang', voices[i].lang);
+   option.setAttribute('data-lang', voices[i].lang);
    option.setAttribute('data-name', voices[i].name);
    voiceOptions.appendChild(option);
- }
+  }
 }
  
 // Event for clear
