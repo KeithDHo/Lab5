@@ -50,7 +50,7 @@ form.addEventListener('submit', (event) => {
  context.textAlign = "center";
  context.strokeStyle = 'black';
  context.fillStyle = 'white';
-
+ 
  context.strokeText(top_text, canvas.width/2, 25);
  context.strokeText(bot_text, canvas.width/2, canvas.height-25);
  context.fillText(top_text, canvas.width/2, 25);

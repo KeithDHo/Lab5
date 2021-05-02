@@ -10,4 +10,4 @@ https://keithdho.github.io/Lab5/
 
 ## Part 2:
 
-LINK TO YOUR PART 2 REPOSITORY
+https://github.com/KeithDHo/github-actions-for-ci/issues/9
